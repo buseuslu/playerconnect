@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter, Redirect } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -15,9 +15,8 @@ class Popup extends React.Component {
   }
 
   handleClick(item) {
-    console.log('look here donut', item)
     axios.post('api/localgames', { gameId: item.id, name: item.name })
-      .then((res)=> this.setState({...this.state, specificGame: res.data, game: item }, () => this.setState({...this.state, redirect: !this.state.redirect}, () => console.log(this.state.game, 'MILES'))))
+      .then((res)=> this.setState({...this.state, specificGame: res.data, game: item }, () => this.setState({...this.state, redirect: !this.state.redirect}, () => console.log(this.state.game))))
       .catch((err) => console.log(err))
   }
 
@@ -27,7 +26,7 @@ class Popup extends React.Component {
       return null
     }
     {this.props.games && console.log(this.props.games)}
-    {this.state.game && console.log(this.state.game, 'its ya boit')}
+    {this.state.game && console.log(this.state.game)}
     return (
       <div className="popup-backdrop">
         <div className="popup">

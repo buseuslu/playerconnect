@@ -1,76 +1,156 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #3: A MERN Stack App
+# Player Connect
+## WDI Project 3 ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png)
 
-## Overview
+## Goal
+* Too build a full-stack application by making backend(Node.js) and front-end(React) and by using an Express API to serve the data from a Mongo database.
 
-**You’ve come a long way, and it's time to show it.** This will be your most advanced project to date. It is __IMPORTANT__ to note that when we say _advanced_, the project doesn't necessarily need to have lots more functionality.
+## Project Overview
+I developed this project with two other students, we created a gaming app. This gaming app allows users to create their own profiles by choosing their favourite video games. Their profile also gives them access to gaming news, chat functionality and view other profiles.
 
-**Remember:** simple code is stable code, so always favour refactoring and bug fixing over adding more functionality.
+### Website
+https://player-connect.herokuapp.com/
 
-With this in mind, you need to be smart about how you plan, limit your project scope to be achievable (in terms of functionality) and focus on quality rather than quantity.
+## Timeframe
+9 days
 
-Remember you are working in a team, make sure you are all on the same page and working towards the same goal.
+## Technologies used
+* HTML5
+* CSS - SASS
+* JavaScript (ES6)
+* React
+* Node.js
+* Express
+* MongoDB
+* APIs: IGN(news) and IGDB(games)
+* Insomnia
+* FileStack
+* Mocha (test)
 
-Make sure you review your project proposal with your instructor so you can make sure it's **something you can accomplish in the limited time we have**. You will have some time after the project to add extra functionality before your Meet & Hire!
+## Process
+### Home page & Search games
+Home page allows everyone access to the news and search for the games.
+![](src/assets/screenshots/homepage.png)
 
----
+### Register
+Users need to register and log-in if they would like to create a profile, view other users' profile, participate in chat and comment on games.
+![](src/assets/screenshots/register.png)
 
-## Technical Requirements
+Unregistered users can access to the games page, however they can not make any comments about the games.
+![](src/assets/screenshots/games-comments-locked.png)
 
-You must:
+### Create profile
+Following registration, the app takes the users to the create their profile page, where they can upload a profile photo and search for their favourite games. They can share  six of their favourite games on their profile. They can complete creating their profile, once they upload a photo and choose six games.
+![](src/assets/screenshots/create-profile.png)
 
-* **Build a full-stack application** by making your own backend and your own front-end
-* **Use an Express API** to serve your data from a Mongo database
-* **Consume your API with a separate front-end** built with React
-* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
-* Consume at least **one public API** to enchance your app
-* **Implement thoughtful user stories/wireframes** that are significant enough to help you know which features are core MVP and which you can cut
-* **Have a visually impressive design** to kick your portfolio up a notch and have something to wow future clients & employers. **ALLOW** time for this.
-* **Be deployed online** so it's publicly accessible.
-* **Have automated tests** for _at least_ one RESTful resource on the back-end. Improve your employability by demonstrating a good understanding of testing principals.
+### Login
+Login page
+![](src/assets/screenshots/login.png)
 
----
+### Home page - logged in & Search games
+Once logged in homepage looks like this, allows users to access to the chat room and the videos.
+![](src/assets/screenshots/home-loggedin.png)
 
-## Necessary Deliverables
+### Chat
+This is the chat room where online users can chat in real time.
+![](src/assets/screenshots/chat.png)
 
-* A **working app** hosted on the internet
-* A **link to your hosted working app** in the URL section of your Github repo
-* A **git repository hosted on Github**, with a link to your hosted project, and frequent commits dating back to the _very beginning_ of the project
-* **A `readme.md` file** with:
-    * An embedded screenshot of the app
-    * Explanations of the **technologies** used
-    * A couple paragraphs about the **general approach you took**
-    * **Installation instructions** for any dependencies
-    * Link to your **user stories/wireframes** – sketches of major views / interfaces in your application
-    * Link to your **pitch deck/presentation** – documentation of your wireframes, user stories, and proposed architecture
-    * Descriptions of any **unsolved problems** or **major hurdles** you had to overcome
+### Comment on games
+Once the users are logged in they can make comments about the games.
+![](src/assets/screenshots/game-page.png)
 
----
+### View own profile
+This is how you view your own profile page.
+![](src/assets/screenshots/own-profile.png)
 
-## Suggested Ways to Get Started
+### View others' profile
+This is how you view others' profile page.
+![](src/assets/screenshots/view-others-profile.png)
 
-* **Don’t get too caught up in too many awesome features** – simple is always better. Build something impressive that does one thing well.
-* **Design first.** Planning with user stories & wireframes before writing code means you won't get distracted changing your mind – you'll know what to build, and you can spend your time wisely by just building it.
-* **Don’t hesitate to write throwaway code** to solve short term problems.
-* **Read the docs for whatever technologies / frameworks / API’s you use**.
-* **Write your code DRY** and **build your APIs RESTful**.
-* **Be consistent with your code style.** You're working in teams, but you're only making one app per team. Make sure it looks like a unified effort.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Keep user stories small and well-defined**, and remember – user stories focus on what a user needs, not what development tasks need accomplishing.
-* **Write code another developer wouldn't have to ask you about**. Do your naming conventions make sense? Would another developer be able to look at your app and understand what everything is?
-* **Make it all well-formatted.** Are you indenting, consistently? Can we find the start and end of every div, curly brace, etc?
-* **Comment your code.** Will someone understand what is going on in each block or function? Even if it's obvious, explaining the what & why means someone else can pick it up and get it.
-* **Write pseudocode before you write actual code.** Thinking through the logic of something helps.
+## Challenges
+* IGDB API was not straight forward. It was not accepting JSON. We needed to figure out how to retrieve the data from the IGDB API.
+* Creating a search function was challenging due to IGDB API being not straight forward.
 
----
+## Wins
+* Learnt how to create a chat function and creating user profiles.
+* Search function was useful and we used it on the "create profile" page as well.
+* The code for the search function is as below:
+```javascript
+import React from 'react'
+import axios from 'axios'
+import Popup from '../components/popup'
+import {withRouter} from 'react-router-dom'
 
-## Project Feedback + Evaluation
+class GameSearch extends React.Component {
+  constructor(){
+    super()
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
+    this.state = {
+      isOpen: false,
+      data: {},
+      errors: {},
+      results: []
+    }
 
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
+    this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.closePopup = this.closePopup.bind(this)
+  }
 
-* __Creativity__: Did you added a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+  handleChange({ target: { value } }) {
+    this.setState({...this.state, query: value })
+  }
 
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors as we have in class?
+  handleClick(e) {
+    e.preventDefault()
+    axios.post('/api/games', {game: this.state.query})
+      .then(games => {
+        console.log(games.data)
+        this.setState({results: games.data})
+        this.openPopup()
+      })
+      .catch(err => console.log(err))
+  }
 
-* __Problem Solving__: Are you able to defend why you implemented your solution in a certain way? Can you demonstrated that you thought through alternative implementations? _(Note that this part of your feedback evaluation will take place during your one-on-one code review with your instructors, after you've completed the project.)_
+  openPopup (){
+    this.setState({
+      isOpen: true
+    })
+  }
+
+  closePopup () {
+    this.setState({
+      isOpen: false
+    })
+  }
+
+  render() {
+    return(
+      <div className="main-gameSearch animated fadeIn">
+        <div className="contains-gameSearch animated fadeIn">
+          <h2> Search a game and get involved! </h2>
+          <input
+            className="gameSearchBar"
+            onChange={this.handleChange}
+          />
+          <button className="gameSearchButton"
+            onClick={this.handleClick}> Go discover
+          </button>
+          <Popup
+            show={this.state.isOpen}
+            games={this.state.results}
+            onClose={this.closePopup}>
+          </Popup>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default withRouter(GameSearch)
+```
+
+## Future Features
+* Responsive web design
+* Friend requests
+* Private chat between users
+* Show recommended videos for each user
