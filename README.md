@@ -2,7 +2,7 @@
 ## WDI Project 3 ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png)
 
 ## Goal
-* Too build a full-stack application by making backend(Node.js) and front-end(React) and by using an Express API to serve the data from a Mongo database.
+To build a full-stack application by making backend(Node.js) and front-end(React) and by using an Express API to serve the data from a Mongo database.
 
 ## Project Overview
 I developed this project with two other students, we created a gaming app. This gaming app allows users to create their own profiles by choosing their favourite video games. Their profile also gives them access to gaming news, chat functionality and view other profiles.
