@@ -1,7 +1,8 @@
 # Player Connect
 ## WDI Project 3 ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png)
+Project-3
 
-### Goal
+## Goal
 To build a full-stack application by making backend(Node.js) and front-end(React) and by using an Express API to serve the data from a Mongo database.
 
 ### Project Overview
